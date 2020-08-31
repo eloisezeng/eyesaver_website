@@ -31,7 +31,8 @@ const footerStyle = {
     border: "1px solid #2db173",
     textAlign: "center",
     padding: "5px 5px",
-    position: "fixed", /* might not work on mobile */
     bottom: "0",
+    position: "fixed", /* might not work on mobile */
+    width: "100%",
     borderRadius: "5px",
 }

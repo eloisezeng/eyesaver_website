@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import { BrowserRouter as Router, Route} from 'react-router-dom';
-import Todos from './components/Todos';
+import Todos from './components/home/Todos';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import About from './components/pages/About';
 import Settings from './components/pages/Settings';
-import AddTodo from './components/AddTodo';
+import AddTodo from './components/home/AddTodo';
 import { v4 as uuid } from 'uuid';
 import axios from 'axios';
 import './App.css';
@@ -89,8 +89,13 @@ class App extends Component {
                   </React.Fragment>
                   )} />
               <Footer />
-                <Route exact path="/About" component={About} />  
-                <Route path="/Settings" component={Settings} />
+                <Route path="/About" component={About} /> 
+                <Route path="/Settings" component={Settings} /> 
+                {/* <Route path="/Settings" render={props => (
+                  <React.Fragment>
+                    <Settings/>
+                  </React.Fragment>
+                )} /> */}
             </div>
         </div>
       </Router>

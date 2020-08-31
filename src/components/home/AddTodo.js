@@ -26,18 +26,16 @@ export class AddTodo extends Component {
                     type='text'
                     name='title' 
                     placeholder='Title: '
-                    style={{flex: '10', padding: '5px'}}
+                    style={{flex: '100', padding: '5px'}}
                     value={this.state.title} // value of text in input is the state's title
                     onChange={this.onChange} //  this.onChange is the name of the method/function in the class
                     />
-                </form>
-                <form style={{flexFlow: "row wrap"}}>
                     <select 
                     name="position" 
                     id="position" 
                     value={this.state.position}
                     onChange={this.onChange}
-                    style={{flex: '10', padding: '5px', width: "50%"}}>
+                    style={{flex: '10', padding: '5px'}}>
                     <option>Position</option>
                     <option value="0">0</option>
                     <option value="1">1</option>
@@ -58,18 +56,18 @@ export class AddTodo extends Component {
                     id="mode"
                     value={this.state.mode}
                     onChange={this.onChange}
-                    style={{flex: '10', padding: '5px', width: "50%"}}>
+                    style={{flex: '10', padding: '5px'}}>
                     <option>Mode</option>
                     <option value="default">default</option>
                     <option value="distracted">distracted</option>
                     </select>   
+                    <input
+                    type='submit'
+                    value='Submit'
+                    className='btn'
+                    style={{flex: '10', padding: '5px', width: "50%"}}
+                    />
                 </form>
-                <input
-                type='submit'
-                value='Submit'
-                className='btn'
-                style={{flex: '10', padding: '5px', width: "60px"}}
-                />
             </div>
             )
         }

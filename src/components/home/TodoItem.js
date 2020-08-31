@@ -8,7 +8,8 @@ export class TodoItem extends Component {
         return {
             // backgroundColor: 'rgb(255, 255, 255, 0.5)',
             padding: '10px',
-            borderBottom: '1px #ccc dotted',
+            position: 'relative'
+            // borderBottom: '1px #ccc dotted',
         }
     }
     render() {
@@ -50,7 +51,11 @@ const delbtnstyle =  {
     borderRadius: '50%',
     cursor: 'pointer',
     float: 'right',
-    marginLeft: "5px",
+    position: "absolute",
+    top: "50%",
+    right: "0%",
+    msTransform: "translate(-50%, -50%)",
+    transform: "translate(-50%, -50%)",
 }
 
 export default TodoItem
