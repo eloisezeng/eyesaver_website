@@ -1,26 +1,100 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
+import { BrowserRouter as Router, Route} from 'react-router-dom';
+import Todos from './components/Todos';
+import Header from './components/layout/Header';
+import Footer from './components/layout/Footer';
+import About from './components/pages/About';
+import Settings from './components/pages/Settings';
+import AddTodo from './components/AddTodo';
+import { v4 as uuid } from 'uuid';
+import axios from 'axios';
 import './App.css';
+class App extends Component {
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  state = {
+        todos: [
+          {
+            id: uuid(),
+            title: "None",
+            position: "0",
+            mode: "default"
+          },
+          {
+            id: uuid(),
+            title: "Normal",
+            position: "6",
+            mode: "default"
+          },
+          {
+            id: uuid(),
+            title: "Distraction",
+            position: "7",
+            mode: "distracted"
+          },
+          {
+            id: uuid(),
+            title: "Thumbsup",
+            position: "thumbsup",
+            mode: "thumbsup",
+          },
+          {
+            id: uuid(),
+            title: "Clapping",
+            position: "clapping",
+            mode: "clapping",
+          },
+        ],
+  }
+  // post Todo
+  postTodo = (position, mode) => {
+    console.log({position, mode})
+    axios.post('http://0.0.0.0:5000/posts', 
+    {position, mode})
+    .then(console.log("Success!"))
+    .catch(error => "Authorization failed: " + error.message)
+  }
+  // delete Todo
+  delTodo = (id) => {
+    this.setState({ todos: [...this.state.todos.filter(todo => todo.id !== id)]})
+  }
+
+  // Add Todo
+  addTodo = (title, position, mode) => {
+    const newTodo = {
+      id: uuid(), 
+      title,
+      position,
+      mode,
+    }
+    // append newTodo to todos
+    this.setState({ todos: [...this.state.todos, newTodo]})
+  }
+
+  render(){
+    return (
+      <Router>
+        <div className="App">
+          <link href='https://fonts.googleapis.com/css?family=Alegreya Sans' rel='stylesheet'></link>
+            <div className="container">
+              <Header />
+                <Route exact path="/" render={props => (
+                  <React.Fragment>
+                    <AddTodo 
+                    addTodo={this.addTodo}
+                    />
+                    <Todos todos={this.state.todos}
+                    postTodo={this.postTodo}
+                    delTodo={this.delTodo}
+                    />
+                  </React.Fragment>
+                  )} />
+              <Footer />
+                <Route exact path="/About" component={About} />  
+                <Route path="/Settings" component={Settings} />
+            </div>
+        </div>
+      </Router>
+    );
+  }
 }
-
 export default App;
