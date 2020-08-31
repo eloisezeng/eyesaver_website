@@ -34,5 +34,4 @@ const footerStyle = {
     bottom: "0",
     position: "fixed", /* might not work on mobile */
     width: "100%",
-    borderRadius: "5px",
 }

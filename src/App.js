@@ -88,7 +88,6 @@ class App extends Component {
                     />
                   </React.Fragment>
                   )} />
-              <Footer />
                 <Route path="/About" component={About} /> 
                 <Route path="/Settings" component={Settings} /> 
                 {/* <Route path="/Settings" render={props => (
@@ -97,6 +96,7 @@ class App extends Component {
                   </React.Fragment>
                 )} /> */}
             </div>
+            <Footer />
         </div>
       </Router>
     );
