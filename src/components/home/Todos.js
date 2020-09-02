@@ -8,7 +8,7 @@ class Todos extends Component {
         (<TodoItem 
             key={todo.id} 
             todo={todo} 
-            postTodo={this.props.postTodo}
+            postButton={this.props.postButton}
             delTodo={this.props.delTodo}
             />)
         )
@@ -21,7 +21,7 @@ class Todos extends Component {
 
 Todos.propTypes = {
     todos: PropTypes.array.isRequired,
-    postTodo: PropTypes.func.isRequired,
+    postButton: PropTypes.func.isRequired,
     delTodo: PropTypes.func.isRequired
 }
 export default Todos;

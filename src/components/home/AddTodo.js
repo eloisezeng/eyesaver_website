@@ -6,17 +6,23 @@ export class AddTodo extends Component {
         title: "",
         position: "",
         mode: "",
+        vid_length: "",
     }
     // e is event in parameter
     // set title to whatever is typed into the event
     // e.target.name is the name in the html tag that has an onChange function
     onChange = (e) => this.setState({ [e.target.name]: e.target.value})
+    
 
     onSubmit = (e) => {
         e.preventDefault() // prevent form from submitting to actual file
         // call props method so you can pass up the method App
-        this.props.addTodo(this.state.title, this.state.position, this.state.mode)
-        this.setState({ title: "", position: "", mode: ""})
+        this.props.addTodo(
+            this.state.title, 
+            this.state.position, 
+            this.state.mode,
+            this.state.vid_length)
+        this.setState({ title: "", position: "", mode: "", vid_length: ""})
     }
     render() {
         return (
@@ -32,7 +38,6 @@ export class AddTodo extends Component {
                     />
                     <select 
                     name="position" 
-                    id="position" 
                     value={this.state.position}
                     onChange={this.onChange}
                     style={{flex: '10', padding: '5px'}}>
@@ -60,7 +65,19 @@ export class AddTodo extends Component {
                     <option>Mode</option>
                     <option value="default">default</option>
                     <option value="distracted">distracted</option>
-                    </select>   
+                    </select> 
+
+                    <input 
+                    type="number" 
+                    id="vid_length" 
+                    name="vid_length" 
+                    min="1" max="30"
+                    value={this.state.vid_length}
+                    onChange={this.onChange}
+                    placeholder="Video Length"
+                    style={{flex: '10', padding: '5px'}}>
+                    </input>
+
                     <input
                     type='submit'
                     value='Submit'

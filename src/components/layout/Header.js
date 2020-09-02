@@ -6,14 +6,15 @@ import React from 'react'
 export default function header() {
     return (
         <header style={headerstyle}>
-            <h1>Eye Saver</h1>
+            <h1>EYE SAVER</h1>
+            {/* <p></p> */}
         </header>
     )
 }
 
 const headerstyle = {
-    background: '#333',
-    color: 'white', // color of text
+    background: 'rgb(30, 200, 101)',
+    color: 'black', // color of text
     textAlign: 'center',
     padding: '10px'
 }

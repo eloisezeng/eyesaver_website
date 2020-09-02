@@ -6,20 +6,28 @@ export class TodoItem extends Component {
     // we want to change the state in App .js, so we have to climb up components to reach the App component
     getStyle = () => {
         return {
-            // backgroundColor: 'rgb(255, 255, 255, 0.5)',
             padding: '10px',
             position: 'relative'
-            // borderBottom: '1px #ccc dotted',
         }
     }
+    showvid_length = () => {
+        return {visibility: this.props.todo.vid_length === "" ? "hidden" : "visible",
+                fontSize: "12px"}
+         
+    }
     render() {
-        const { id, title, position, mode} = this.props.todo
+        const { id, title, position, mode, vid_length} = this.props.todo
         return (
             <div style={this.getStyle()}>
-                <button onClick={this.props.delTodo.bind(this, id)} style={delbtnstyle}>X</button> 
-                <button onClick={this.props.postTodo.bind(this, position, mode)} style={btnstyle}>
+                <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"></link>
+                <button onClick={this.props.delTodo.bind(this, id)} style={delbtnstyle}>
+                <i className="material-icons">delete</i>
+                </button> 
+                <button onClick={this.props.postButton.bind(this, position, mode, vid_length)} style={btnstyle}>
                     <h1>{ title }</h1> 
-                    <p style={{fontSize: "12px"}}>Position: { position } Mode: { mode }</p>
+                    <p style={{fontSize: "12px"}}>
+                        Position: { position } Mode: { mode } </p> 
+                    <p style={this.showvid_length()}>Video Length: { vid_length }</p>
                 </button>
             </div>
         )
@@ -28,12 +36,12 @@ export class TodoItem extends Component {
 
 TodoItem.propTypes = {
     todo: PropTypes.object.isRequired,
-    postTodo: PropTypes.func.isRequired,
+    postButton: PropTypes.func.isRequired,
     delTodo: PropTypes.func.isRequired
 }
 
 const btnstyle = {
-    backgroundColor: "#57df9f",
+    backgroundColor: "rgb(250, 169, 64)",
     color: "#333",
     padding: "15px 32px",
     textAlign: "center",
@@ -41,11 +49,12 @@ const btnstyle = {
     fontSize: "18px",
     width: "90%",
     borderRadius: "14px",
-    border: "1px solid #2db173",
+    border: "2px solid #fcc544",
 }
 const delbtnstyle =  {
-    backgroundColor: '#ff0000',
-    color: 'white',
+    backgroundColor: "rgb(0, 0, 0, 0)",
+    color: "rgb(58, 55, 55)",
+    fontSize: '30px',
     border: 'none',
     padding: '5px 9px',
     borderRadius: '50%',
