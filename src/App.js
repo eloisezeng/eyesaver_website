@@ -7,8 +7,8 @@ import About from './components/pages/About';
 import ConfigSettings from './components/pages/ConfigSettings';
 import Settings from './components/pages/Settings';
 import SettingsHeader from './components/pages/SettingsHeader';
-import pixel_settings from './user_data/pixel_settings.json';
-import buttons from './user_data/buttons.json';
+// import pixel_settings from './user_data/pixel_settings.json';
+// import buttons from './user_data/buttons.json';
 import AddTodo from './components/home/AddTodo';
 import { v4 as uuid } from 'uuid';
 import axios from 'axios';
@@ -17,23 +17,38 @@ import './App.css';
 class App extends Component {
 
   state = {
-        todos: buttons,
-        config_settings: [
-          {
-            id: uuid(),
-            name: "ip",
-            value: "",
-          },
-          {
-            id: uuid(),
-            name: "computer",
-            value: "",
-          },
-        ],
-        settings: pixel_settings
+    todos: [],
+    config_settings: [
+      {
+        id: uuid(),
+        name: "ip",
+        value: "",
+      },
+      {
+        id: uuid(),
+        name: "computer",
+        value: "",
+      },
+    ],
+    settings: []
   }
   
-  // post Todo
+  // get todos and pixelsettings
+  componentDidMount() {
+    axios.get(`http://192.168.1.8:61405/buttons`)
+      .then(res => {
+        const todos = res.data;
+        this.setState({ todos });
+      })
+      .catch(error => console.log("Server is down", error))
+      axios.get(`http://192.168.1.8:61405/pixelsettings`)
+      .then(res => {
+        const settings = res.data;
+        this.setState({ settings });
+      })
+      .catch(error => console.log("Server is down", error))
+  }
+
   postButton = (position, mode, vid_length) => {
     console.log({position, mode, vid_length})
     axios.post('http://192.168.1.8:61405/posts', 
@@ -45,6 +60,9 @@ class App extends Component {
   // delete Todo
   delTodo = (id) => {
     this.setState({ todos: [...this.state.todos.filter(todo => todo.id !== id)]})
+    axios.delete('http://192.168.1.8:61405/buttons/' + id)
+    .then(console.log("Deleted button"))
+    .catch(error => "Authorization failed: " + error.message)
   }
 
   // Add Todo
@@ -58,6 +76,10 @@ class App extends Component {
     }
     // append newTodo to todos
     this.setState({ todos: [...this.state.todos, newTodo]})
+    axios.post('http://192.168.1.8:61405/buttons', 
+    {id: uuid(), title, position, mode, vid_length})
+    .then(console.log("Success!"))
+    .catch(error => "Authorization failed: " + error.message)
   }
 
   saveSetting = (name, x, y) => {

@@ -1,10 +1,13 @@
-Fix ip and computer components
+don't need ip and computer components
+scan qr code to get computer information about type of computer and ip
 192.168.1.8
 read data to files on server side
 read data from server
 combine setting components into one json with the pixels
 share settings
 check mark when posted, else server is down
+is it possible to start server when app opens?
+rearrange buttons by dragging
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
