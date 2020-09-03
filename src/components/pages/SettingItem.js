@@ -33,7 +33,7 @@ export default class SettingItem extends Component {
         }
     
     render() {
-        const { name, label, img, type} = this.props.setting
+        const { name, label, img, mode} = this.props.setting
         return (
             <form onSubmit={this.onSubmit} style={formStyle}>
                 {/* <input 
@@ -77,7 +77,7 @@ export default class SettingItem extends Component {
                 type='button'
                 value='Test'
                 style={btnStyle}
-                onClick={this.props.postButton.bind(this, name, "", "")}>Test
+                onClick={this.props.postButton.bind(this, name, mode, "")}>Test
                 </button>
                 <input
                 type='submit'

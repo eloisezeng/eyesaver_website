@@ -27,7 +27,7 @@ export class AddTodo extends Component {
     render() {
         return (
             <div>
-                <form onSubmit={this.onSubmit} style={{display: 'flex'}}>
+                <form onSubmit={this.onSubmit} style={{display: 'flex', position: 'relative', }}>
                     <input 
                     type='text'
                     name='title' 
@@ -80,7 +80,7 @@ export class AddTodo extends Component {
 
                     <input
                     type='submit'
-                    value='Submit'
+                    value='Add'
                     className='btn'
                     style={{flex: '10', padding: '5px'}}
                     />

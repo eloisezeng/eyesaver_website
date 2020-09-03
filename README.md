@@ -1,4 +1,10 @@
+Fix ip and computer components
 192.168.1.8
+read data to files on server side
+read data from server
+combine setting components into one json with the pixels
+share settings
+check mark when posted, else server is down
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
