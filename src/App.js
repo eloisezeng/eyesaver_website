@@ -7,8 +7,6 @@ import About from './components/pages/About';
 import ConfigSettings from './components/pages/ConfigSettings';
 import Settings from './components/pages/Settings';
 import SettingsHeader from './components/pages/SettingsHeader';
-// import pixel_settings from './user_data/pixel_settings.json';
-// import buttons from './user_data/buttons.json';
 import AddTodo from './components/home/AddTodo';
 import { v4 as uuid } from 'uuid';
 import axios from 'axios';
@@ -59,9 +57,10 @@ class App extends Component {
 
   // delete Todo
   delTodo = (id) => {
+    console.log(id)
     this.setState({ todos: [...this.state.todos.filter(todo => todo.id !== id)]})
     axios.delete('http://192.168.1.8:61405/buttons/' + id)
-    .then(console.log("Deleted button"))
+    .then(console.log(id, "Deleted button"))
     .catch(error => "Authorization failed: " + error.message)
   }
 
@@ -77,19 +76,22 @@ class App extends Component {
     // append newTodo to todos
     this.setState({ todos: [...this.state.todos, newTodo]})
     axios.post('http://192.168.1.8:61405/buttons', 
-    {id: uuid(), title, position, mode, vid_length})
-    .then(console.log("Success!"))
+    {id: newTodo["id"], title, position, mode, vid_length})
+    .then(console.log(newTodo["id"], "Success!"))
     .catch(error => "Authorization failed: " + error.message)
   }
 
-  saveSetting = (name, x, y) => {
-    console.log(name, x, y, "you called save settings")
+  saveSetting = (id, x, y) => {
+    axios.post('http://192.168.1.8:61405/pixelsettings', 
+    {id, x, y})
+    .then(console.log("Success!"))
+    .catch(error => "Authorization failed: " + error.message)
+    
+    console.log(id, x, y, "you called save settings")
     this.setState({ settings: this.state.settings.map((setting) => {
-    if(setting.name === name) {
+    if(setting.id === id) {
       setting.x = x
       setting.y = y
-      // console.log(setting)
-      console.log(this.state.todos)
     }
     return setting
     })})

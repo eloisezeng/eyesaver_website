@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 export default class SettingItem extends Component {
     state = {
-        name: this.props.setting.name,
+        id: this.props.setting.id,
         x: this.props.setting.x,
         y: this.props.setting.y,
     }
@@ -14,7 +14,7 @@ export default class SettingItem extends Component {
 
     onSubmit = (e) => {
         e.preventDefault() 
-        this.props.saveSetting(this.state.name, this.state.x, this.state.y)
+        this.props.saveSetting(this.state.id, this.state.x, this.state.y)
     }
 
     // show dropdown button if there is an image source

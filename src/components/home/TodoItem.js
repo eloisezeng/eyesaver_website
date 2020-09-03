@@ -11,8 +11,9 @@ export class TodoItem extends Component {
         }
     }
     showvid_length = () => {
-        return {visibility: this.props.todo.vid_length === "" ? "hidden" : "visible",
-                fontSize: "12px"}
+        return {display: this.props.todo.vid_length === "" ? "none" : "visible",
+                fontSize: "12px",
+                fontWeight: "normal"}
          
     }
     render() {
@@ -26,8 +27,9 @@ export class TodoItem extends Component {
                 <button onClick={this.props.postButton.bind(this, position, mode, vid_length)} style={btnstyle}>
                     <h1>{ title }</h1> 
                     <p style={{fontSize: "12px"}}>
-                        Position: { position } Mode: { mode } </p> 
-                    <p style={this.showvid_length()}>Video Length: { vid_length }</p>
+                        Position: { position } | Mode: { mode } <b style={this.showvid_length()}>| Video Length: { vid_length }</b>
+                    </p> 
+                    
                 </button>
             </div>
         )
