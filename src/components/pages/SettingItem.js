@@ -8,13 +8,13 @@ export default class SettingItem extends Component {
         y: this.props.setting.y,
     }
    
+    // autosave when user types something
     onChange = (e) => {
-        this.setState({ [e.target.name]: e.target.value}) // there is no ip: 123 in this state
-    }
-
-    onSubmit = (e) => {
+        console.log("you typed something")
         e.preventDefault() 
-        this.props.saveSetting(this.state.id, this.state.x, this.state.y)
+        this.setState({ [e.target.name]: e.target.value }, () => {
+            this.props.saveSetting(this.state.id, this.state.x, this.state.y)
+          })
     }
 
     // show dropdown button if there is an image source
@@ -35,15 +35,7 @@ export default class SettingItem extends Component {
     render() {
         const { name, label, img, mode} = this.props.setting
         return (
-            <form onSubmit={this.onSubmit} style={formStyle}>
-                {/* <input 
-                type='text'
-                name={name} 
-                placeholder={label + ":"}
-                style={{flex: '10', padding: '5px'}}
-                value={input} // value of text in input is the state's title
-                onChange={this.onChange} 
-                /> */}
+            <form style={formStyle}>
                 <details style={this.showDropdown()}>
                     <summary>
                         { label }
@@ -61,7 +53,7 @@ export default class SettingItem extends Component {
                 style={btnStyle}
                 value={this.state.x}
                 onChange={this.onChange}
-                min="0" max="3000"
+                min="0" max="5000"
                 placeholder="x-pixel"
                 />
                 <input 
@@ -70,20 +62,16 @@ export default class SettingItem extends Component {
                 style={btnStyle}
                 value={this.state.y}
                 onChange={this.onChange}
-                min="0" max="3000" 
+                min="0" max="5000" 
                 placeholder="y-pixel"
                 />
                 <button
                 type='button'
                 value='Test'
                 style={btnStyle}
+                disabled={!(this.state.x && this.state.y)}
                 onClick={this.props.postButton.bind(this, name, mode, "")}>Test
                 </button>
-                <input
-                type='submit'
-                value='Save'
-                style={btnStyle}
-                />
             </form>     
             )
         }
