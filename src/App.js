@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route} from 'react-router-dom';
 import Todos from './components/home/Todos';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
+import Connected from './components/layout/Connected'; // gives connected message
+import ReadQRCode from './components/buttons/ReadQRCode'
 import About from './components/pages/About';
 import ConfigSettings from './components/pages/ConfigSettings';
 import Settings from './components/pages/Settings';
@@ -10,84 +12,62 @@ import SettingsHeader from './components/pages/SettingsHeader';
 import AddTodo from './components/home/AddTodo';
 import { v4 as uuid } from 'uuid';
 import axios from 'axios';
+import ls from 'local-storage'
 import './App.css';
 
 class App extends Component {
 
   state = {
     todos: [],
-    config_settings: [
+    config_settings: 
       {
         id: uuid(),
-        name: "ip",
-        value: "",
+        ip: "",
+        computer: "",
+        result: "", // DELETE experimental
       },
-      {
-        id: uuid(),
-        name: "computer",
-        value: "",
-      },
-    ],
-    settings: []
+    settings: [],
+    connected: false,
   }
-  
+
+  saveConfigSetting = (ip, computer) => {
+    console.log(ip, computer)
+    this.setState( {config_settings: {ip: ip, computer: computer}}, () => {
+    console.log(this.state.config_settings)})
+    ls.set('ip', ip) // store ip locally
+    ls.set('computer', computer)
+  }
   // get todos and pixelsettings
   componentDidMount() {
-    axios.get(`http://192.168.1.8:61405/buttons`)
+    this.setState({config_settings: {
+      ...this.state.config_settings,
+      ip: ls.get('ip') || [], // retrieve client-side storage and set as state
+      computer: ls.get('computer')
+    }}, () => { // run the rest of this code after the state is set.
+    console.log(this.state.config_settings)
+    const url = 'http://' + this.state.config_settings.ip + ':61405' // make url
+    axios.get(url + '/buttons') // get user's buttons
       .then(res => {
         const todos = res.data;
         this.setState({ todos });
+        this.setState({ connected: true });
       })
-      .catch(error => console.log("Server is down", error))
-      axios.get(`http://192.168.1.8:61405/pixelsettings`)
-      .then(res => {
-        const settings = res.data;
-        this.setState({ settings });
-      })
-      .catch(error => console.log("Server is down", error))
-  }
-
-  postButton = (position, mode, vid_length) => {
-    console.log({position, mode, vid_length})
-    axios.post('http://192.168.1.8:61405/posts', 
-    {position, mode, vid_length})
-    .then(console.log("Success!"))
-    .catch(error => "Authorization failed: " + error.message)
-  }
-
-  // delete Todo
-  delTodo = (id) => {
-    console.log(id)
-    this.setState({ todos: [...this.state.todos.filter(todo => todo.id !== id)]})
-    axios.delete('http://192.168.1.8:61405/buttons/' + id)
-    .then(console.log(id, "Deleted button"))
-    .catch(error => "Authorization failed: " + error.message)
-  }
-
-  // Add Todo
-  addTodo = (title, position, mode, vid_length) => {
-    const newTodo = {
-      id: uuid(), 
-      title,
-      position,
-      mode,
-      vid_length,
-    }
-    // append newTodo to todos
-    this.setState({ todos: [...this.state.todos, newTodo]})
-    axios.post('http://192.168.1.8:61405/buttons', 
-    {id: newTodo["id"], title, position, mode, vid_length})
-    .then(console.log(newTodo["id"], "Success!"))
-    .catch(error => "Authorization failed: " + error.message)
+      .catch(error => {
+        console.log("Server is down", error)})
+    axios.get(url + '/pixelsettings') // get user's pixelsettings
+    .then(res => {
+      const settings = res.data;
+      this.setState({ settings });
+    })
+    .catch(error => console.log("Server is down", error))})
   }
 
   saveSetting = (id, x, y) => {
-    axios.post('http://192.168.1.8:61405/pixelsettings', 
+    const url = 'http://' + this.state.config_settings.ip + ':61405' // make url
+    axios.post(url + '/pixelsettings', 
     {id, x, y})
     .then(console.log("Success!"))
     .catch(error => "Authorization failed: " + error.message)
-    
-    console.log(id, x, y, "you called save settings")
     this.setState({ settings: this.state.settings.map((setting) => {
     if(setting.id === id) {
       setting.x = x
@@ -97,13 +77,63 @@ class App extends Component {
     })})
   }
 
+  setPixels = (id) => {
+    console.log("set pixels")
+  }
+  postButton = (position, mode, vid_length) => {
+    console.log({position, mode, vid_length})
+    const url = 'http://' + this.state.config_settings.ip + ':61405'
+    console.log(url) 
+    axios.post(url + "/posts",
+    {position, mode, vid_length})
+    .then(console.log("Success!"))
+    .catch(error => "Authorization failed: " + error.message)
+  }
+
+  // delete Todo
+  delTodo = (id) => {
+    console.log("deleting")
+    const url = 'http://' + this.state.config_settings.ip + ':61405'
+    this.setState({ todos: [...this.state.todos.filter(todo => todo.id !== id)]})
+    axios.delete(url + '/buttons/' + id)
+    .then(console.log(id, "Deleted button"))
+    .catch(error => "Authorization failed: " + error.message)
+  }
+
+  // Add Todo
+  addTodo = (title, position, mode, vid_length) => {
+    const url = 'http://' + this.state.config_settings.ip + ':61405'
+    const newTodo = {
+      id: uuid(), 
+      title,
+      position,
+      mode,
+      vid_length,
+    }
+    // append newTodo to todos
+    this.setState({ todos: [...this.state.todos, newTodo]})
+    axios.post(url + '/buttons', 
+    {id: newTodo["id"], title, position, mode, vid_length})
+    .then(console.log(newTodo["id"], "Success!"))
+    .catch(error => "Authorization failed: " + error.message)
+  }
+
   render(){
     return (
       <Router>
         <div className="App">
           <link href='https://fonts.googleapis.com/css?family=Alegreya Sans' rel='stylesheet'></link>
             <div className="container">
-              <Header />
+            <React.Fragment>
+              <Header/>
+              <ReadQRCode
+              // onError={this.props.handleError}
+              // onScan={this.props.handleScan}
+              />
+              <Connected
+              connected={this.state.connected}
+              />
+            </React.Fragment>
                 <Route exact path="/" render={props => (
                   <React.Fragment>
                     <Todos 
@@ -120,11 +150,15 @@ class App extends Component {
                 <Route path="/Settings" render={props => (
                   <React.Fragment>
                     <SettingsHeader />
-                    <ConfigSettings />
                     <Settings
                     settings={this.state.settings}
                     saveSetting={this.saveSetting}
                     postButton={this.postButton}
+                    setPixels={this.setPixels}
+                    />
+                    <ConfigSettings 
+                    config_settings={this.state.config_settings}
+                    saveConfigSetting={this.saveConfigSetting}
                     />
                   </React.Fragment>
                 )} />

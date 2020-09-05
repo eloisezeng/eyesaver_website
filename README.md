@@ -1,4 +1,4 @@
-ip and computer components
+ip and computer components,delete ip dropdown
 scan qr code to get computer information about type of computer and ip
 get position of mouse with pyautogui
 share settings

@@ -10,6 +10,7 @@ class Settings extends Component {
             setting={setting} 
             saveSetting={this.props.saveSetting}
             postButton={this.props.postButton}
+            setPixels={this.props.setPixels}
             />
             ),
         )
@@ -19,6 +20,7 @@ class Settings extends Component {
 Settings.propTypes = {
     settings: PropTypes.array.isRequired,
     saveSetting: PropTypes.func.isRequired,
-    postButton: PropTypes.func.isRequired
+    postButton: PropTypes.func.isRequired,
+    setPixels: PropTypes.func.isRequired,
 }
 export default Settings;

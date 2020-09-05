@@ -10,7 +10,6 @@ export default class SettingItem extends Component {
    
     // autosave when user types something
     onChange = (e) => {
-        console.log("you typed something")
         e.preventDefault() 
         this.setState({ [e.target.name]: e.target.value }, () => {
             this.props.saveSetting(this.state.id, this.state.x, this.state.y)
@@ -28,7 +27,6 @@ export default class SettingItem extends Component {
     showCaption = () => {
         return {display: this.props.setting.img === "" ? "visible" : "none",
                 width: '50%',
-
             }
         }
     
@@ -69,6 +67,12 @@ export default class SettingItem extends Component {
                 type='button'
                 value='Test'
                 style={btnStyle}
+                onClick={this.props.setPixels.bind(this, name, mode, "")}>Set
+                </button>
+                <button
+                type='button'
+                value='Test'
+                style={btnStyle}
                 disabled={!(this.state.x && this.state.y)}
                 onClick={this.props.postButton.bind(this, name, mode, "")}>Test
                 </button>
@@ -87,7 +91,9 @@ const btnStyle = {
 }
 
 SettingItem.propTypes = {
-    // setting: PropTypes.object.isRequired,
-    saveSetting: PropTypes.func.isRequired
+    setting: PropTypes.object.isRequired,
+    saveSetting: PropTypes.func.isRequired,
+    postButton: PropTypes.func.isRequired,
+    setPixels: PropTypes.func.isRequired,
 }
 

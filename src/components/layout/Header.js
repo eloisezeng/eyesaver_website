@@ -3,11 +3,10 @@
 
 import React from 'react'
 
-export default function header() {
+export default function Header() {
     return (
         <header style={headerstyle}>
             <h1>EYE SAVER</h1>
-            {/* <p></p> */}
         </header>
     )
 }
