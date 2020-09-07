@@ -14,8 +14,6 @@ export default function About() {
             <p>Send your questions and suggestions to eyesaver@gmail.com</p>
             <img style={{height: "120px"}} src="/images/happy_carrots.png" alt="Happy Carrots Chasing Zoom"></img>
             <img style={{height: "120px"}} src="/images/zoom_logo.png" alt="Zoom logo"></img>
-            {/* DELETE */}
-            {/* <div style={{margin-top: "400px"}}></div> */}
             <footer><p>Copyright &copy; 2020, EZ Corporations</p></footer> 
         </div>
     )

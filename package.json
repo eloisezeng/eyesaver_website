@@ -11,11 +11,12 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-qr-reader": "^2.2.1",
+    "react-redirect": "^1.0.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3"
   },
   "scripts": {
-    "start": "HTTPS=true SSL_CRT_FILE=./.cert/cert.pem SSL_KEY_FILE=./.cert/key.pem react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

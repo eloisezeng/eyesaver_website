@@ -1,5 +1,5 @@
-ip and computer components,delete ip dropdown
-scan qr code to get computer information about type of computer and ip
+qr code always has video on- doesn't really matter bc we're converting to react native anyway
+hide ip address
 get position of mouse with pyautogui
 share settings
 check mark when posted, else server is down

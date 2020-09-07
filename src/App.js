@@ -4,9 +4,7 @@ import Todos from './components/home/Todos';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import Connected from './components/layout/Connected'; // gives connected message
-import ReadQRCode from './components/buttons/ReadQRCode'
 import About from './components/pages/About';
-import ConfigSettings from './components/pages/ConfigSettings';
 import Settings from './components/pages/Settings';
 import SettingsHeader from './components/pages/SettingsHeader';
 import AddTodo from './components/home/AddTodo';
@@ -14,6 +12,7 @@ import { v4 as uuid } from 'uuid';
 import axios from 'axios';
 import ls from 'local-storage'
 import './App.css';
+import { Redirect } from 'react-router-dom'
 
 class App extends Component {
 
@@ -22,9 +21,8 @@ class App extends Component {
     config_settings: 
       {
         id: uuid(),
-        ip: "",
-        computer: "",
-        result: "", // DELETE experimental
+        ip: ls.get('ip') || "", // retrieve client-side storage and set as state
+        computer: ls.get('computer') || "",
       },
     settings: [],
     connected: false,
@@ -39,11 +37,6 @@ class App extends Component {
   }
   // get todos and pixelsettings
   componentDidMount() {
-    this.setState({config_settings: {
-      ...this.state.config_settings,
-      ip: ls.get('ip') || [], // retrieve client-side storage and set as state
-      computer: ls.get('computer')
-    }}, () => { // run the rest of this code after the state is set.
     console.log(this.state.config_settings)
     const url = 'http://' + this.state.config_settings.ip + ':61405' // make url
     axios.get(url + '/buttons') // get user's buttons
@@ -51,6 +44,7 @@ class App extends Component {
         const todos = res.data;
         this.setState({ todos });
         this.setState({ connected: true });
+        console.log(this.state.connected)
       })
       .catch(error => {
         console.log("Server is down", error)})
@@ -59,8 +53,7 @@ class App extends Component {
       const settings = res.data;
       this.setState({ settings });
     })
-    .catch(error => console.log("Server is down", error))})
-  }
+    .catch(error => console.log("Server is down", error))}
 
   saveSetting = (id, x, y) => {
     const url = 'http://' + this.state.config_settings.ip + ':61405' // make url
@@ -122,19 +115,22 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <link href='https://fonts.googleapis.com/css?family=Alegreya Sans' rel='stylesheet'></link>
+          <link href='http://fonts.googleapis.com/css?family=Alegreya Sans' rel='stylesheet'></link>
             <div className="container">
             <React.Fragment>
               <Header/>
-              <ReadQRCode
-              // onError={this.props.handleError}
-              // onScan={this.props.handleScan}
-              />
-              <Connected
-              connected={this.state.connected}
-              />
             </React.Fragment>
-                <Route exact path="/" render={props => (
+            <Route path="/connect" render={props => (
+              // this.state.connected ? <Redirect to="/home" /> : <Redirect to="/connect" />
+            <React.Fragment>
+              {this.state.connected ? <Redirect to="/home" /> : <Redirect to="/connect" />}
+              <Connected
+                config_settings={this.state.config_settings}
+                saveConfigSetting={this.saveConfigSetting}
+                />
+              </React.Fragment> // if app is connected to server, direct qr code page to home
+            )}/>
+                <Route path="/home" render={props => (
                   <React.Fragment>
                     <Todos 
                     todos={this.state.todos}
@@ -144,9 +140,15 @@ class App extends Component {
                     <AddTodo 
                       addTodo={this.addTodo}
                     />
+                    {this.state.connected ? <Redirect to="/home" /> : <Redirect to="/connect" />}
                   </React.Fragment>
                   )} />
-                <Route path="/About" component={About} /> 
+                <Route path="/About" render={props => (
+                  <React.Fragment>
+                    <About />
+                  {this.state.connected ? <Redirect to="/about" /> : <Redirect to="/connect" />}
+                  </React.Fragment>
+                )}/>
                 <Route path="/Settings" render={props => (
                   <React.Fragment>
                     <SettingsHeader />
@@ -156,10 +158,7 @@ class App extends Component {
                     postButton={this.postButton}
                     setPixels={this.setPixels}
                     />
-                    <ConfigSettings 
-                    config_settings={this.state.config_settings}
-                    saveConfigSetting={this.saveConfigSetting}
-                    />
+                    {this.state.connected ? <Redirect to="/settings" /> : <Redirect to="/connect" />}
                   </React.Fragment>
                 )} />
             </div>

@@ -6,7 +6,7 @@ export default function Footer() {
         <footer style={footerStyle}>
             <link rel="stylesheet" 
             href="https://fonts.googleapis.com/icon?family=Material+Icons"></link>
-            <Link style={linkStyle} to="/">
+            <Link style={linkStyle} to="/home">
                 <i className="material-icons">home</i>
             </Link>
             <Link style={linkStyle} to="/settings">
