@@ -121,7 +121,6 @@ class App extends Component {
               <Header/>
             </React.Fragment>
             <Route path="/connect" render={props => (
-              // this.state.connected ? <Redirect to="/home" /> : <Redirect to="/connect" />
             <React.Fragment>
               {this.state.connected ? <Redirect to="/home" /> : <Redirect to="/connect" />}
               <Connected
@@ -143,12 +142,7 @@ class App extends Component {
                     {this.state.connected ? <Redirect to="/home" /> : <Redirect to="/connect" />}
                   </React.Fragment>
                   )} />
-                <Route path="/About" render={props => (
-                  <React.Fragment>
-                    <About />
-                  {this.state.connected ? <Redirect to="/about" /> : <Redirect to="/connect" />}
-                  </React.Fragment>
-                )}/>
+                <Route path="/About" component={About}/>
                 <Route path="/Settings" render={props => (
                   <React.Fragment>
                     <SettingsHeader />
@@ -158,7 +152,6 @@ class App extends Component {
                     postButton={this.postButton}
                     setPixels={this.setPixels}
                     />
-                    {this.state.connected ? <Redirect to="/settings" /> : <Redirect to="/connect" />}
                   </React.Fragment>
                 )} />
             </div>
