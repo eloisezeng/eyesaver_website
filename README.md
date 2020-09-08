@@ -1,10 +1,11 @@
-qr code always has video on- doesn't really matter bc we're converting to react native anyway
-hide ip address
 get position of mouse with pyautogui
+if mac is in  name, use mac pixel settings
 share settings
 check mark when posted, else server is down
-rearrange buttons by dragging
+HELP!!! with pixels
+React Native
 instructions so user knows how to use the app
+rearrange buttons by dragging
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
