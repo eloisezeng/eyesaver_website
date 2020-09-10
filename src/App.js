@@ -69,9 +69,18 @@ class App extends Component {
     return setting
     })})
   }
-
-  setPixels = (id) => {
-    console.log("set pixels")
+  setPixels = (name) => {
+    console.log(name, "set pixels")
+    const url = 'http://' + this.state.config_settings.ip + ':61405'
+    axios.post(url + "/getpositions",
+    {name})
+    .then(console.log("Success!"))
+    .catch(error => "Authorization failed: " + error.message)
+  }
+  componentDidUpdate(prevState) {
+    if (prevState !== this.state) {
+      console.log('pokemons state has changed.')
+    }
   }
   postButton = (position, mode, vid_length) => {
     console.log({position, mode, vid_length})

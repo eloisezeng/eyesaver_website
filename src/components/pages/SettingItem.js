@@ -65,9 +65,9 @@ export default class SettingItem extends Component {
                 />
                 <button
                 type='button'
-                value='Test'
+                value='Set'
                 style={btnStyle}
-                onClick={this.props.setPixels.bind(this, name, mode, "")}>Set
+                onClick={this.props.setPixels.bind(this, name)}>Set
                 </button>
                 <button
                 type='button'

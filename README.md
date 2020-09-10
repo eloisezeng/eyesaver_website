@@ -1,8 +1,6 @@
-get position of mouse with pyautogui
 if mac is in  name, use mac pixel settings
 share settings
 check mark when posted, else server is down
-HELP!!! with pixels
 React Native
 instructions so user knows how to use the app
 rearrange buttons by dragging
