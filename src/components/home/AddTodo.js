@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 
 export class AddTodo extends Component {
     state = {
@@ -8,12 +9,7 @@ export class AddTodo extends Component {
         mode: "",
         vid_length: "",
     }
-    // e is event in parameter
-    // set title to whatever is typed into the event
-    // e.target.name is the name in the html tag that has an onChange function
     onChange = (e) => this.setState({ [e.target.name]: e.target.value})
-    
-
     onSubmit = (e) => {
         e.preventDefault() // prevent form from submitting to actual file
         // call props method so you can pass up the method App
@@ -26,13 +22,13 @@ export class AddTodo extends Component {
     }
     render() {
         return (
-            <div>
-                <form onSubmit={this.onSubmit} style={{display: 'flex', position: 'relative', }}>
+            <div style={{position: "relative"}}>
+                <form onSubmit={this.onSubmit} style={{display: 'flex', position: "fixed", bottom: '0', marginBottom: '40px'}}>
                     <input 
                     type='text'
                     name='title' 
                     placeholder='Title: '
-                    style={{flex: '100', padding: '5px'}}
+                    style={{flex: '1', padding: '5px'}}
                     value={this.state.title} // value of text in input is the state's title
                     onChange={this.onChange} //  this.onChange is the name of the method/function in the class
                     />
@@ -40,7 +36,7 @@ export class AddTodo extends Component {
                     name="position" 
                     value={this.state.position}
                     onChange={this.onChange}
-                    style={{flex: '10', padding: '5px'}}>
+                    style={{flex: '1', padding: '5px'}}>
                     <option>Position</option>
                     <option value="0">0</option>
                     <option value="1">1</option>
@@ -61,7 +57,7 @@ export class AddTodo extends Component {
                     id="mode"
                     value={this.state.mode}
                     onChange={this.onChange}
-                    style={{flex: '10', padding: '5px'}}>
+                    style={{flex: '1', padding: '5px'}}>
                     <option>Mode</option>
                     <option value="default">default</option>
                     <option value="distracted">distracted</option>
@@ -75,20 +71,54 @@ export class AddTodo extends Component {
                     value={this.state.vid_length}
                     onChange={this.onChange}
                     placeholder="Video Length"
-                    style={{flex: '10', padding: '5px'}}>
+                    style={{flex: '1', padding: '5px'}}>
                     </input>
-
                     <input
                     type='submit'
                     value='Add'
                     className='btn'
-                    style={{flex: '10', padding: '5px'}}
+                    style={{flex: '1', padding: '5px'}}
                     />
                 </form>
+                <footer style={footerStyle}>
+                    <link rel="stylesheet" 
+                    href="https://fonts.googleapis.com/icon?family=Material+Icons"></link>
+                    <Link style={linkStyle} to="/home">
+                        <i style={iconStyle} className="material-icons">home</i>
+                    </Link>
+                    <Link style={linkStyle} to="/settings">
+                        <i style={iconStyle} className="material-icons">settings</i>
+                    </Link>
+                    <Link style={linkStyle} to="/info">
+                        <i style={iconStyle} className="material-icons">info</i>
+                    </Link>
+                    <Link style={linkStyle} to="/about">
+                        <i style={iconStyle} className="material-icons">help</i>
+                    </Link>
+                </footer> 
             </div>
             )
         }
     }
+
+const iconStyle = {
+    height: "5%",
+}
+const linkStyle = {
+    color: "black",
+    paddingLeft: "10px",
+    paddingRight: "10px",
+}
+
+const footerStyle = {
+    backgroundColor: "#89e4b9",
+    border: "1px solid #2db173",
+    textAlign: "center",
+    padding: "5px 5px",
+    bottom: "0",
+    position: "fixed", /* might not work on mobile */
+    width: "100%",
+}
 
 AddTodo.propTypes = {
     addTodo: PropTypes.func.isRequired

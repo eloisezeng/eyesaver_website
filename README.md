@@ -1,9 +1,6 @@
-if mac is in  name, use mac pixel settings
-share settings
-check mark when posted, else server is down
-React Native
-instructions so user knows how to use the app
-rearrange buttons by dragging
+# Eye Saver
+## Version 1.0.0
+Coded by Eloise Zeng
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

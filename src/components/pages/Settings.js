@@ -12,7 +12,7 @@ class Settings extends Component {
             postButton={this.props.postButton}
             setPixels={this.props.setPixels}
             />
-            ),
+            )
         )
     }
 }

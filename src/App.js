@@ -2,10 +2,11 @@ import React, {Component} from 'react';
 import { BrowserRouter as Router, Route} from 'react-router-dom';
 import Todos from './components/home/Todos';
 import Header from './components/layout/Header';
-import Footer from './components/layout/Footer';
 import Connected from './components/layout/Connected'; // gives connected message
+import Info from './components/pages/Info';
 import About from './components/pages/About';
 import Settings from './components/pages/Settings';
+import ShareSettings from './components/pages/ShareSettings';
 import SettingsHeader from './components/pages/SettingsHeader';
 import AddTodo from './components/home/AddTodo';
 import { v4 as uuid } from 'uuid';
@@ -59,7 +60,7 @@ class App extends Component {
     const url = 'http://' + this.state.config_settings.ip + ':61405' // make url
     axios.post(url + '/pixelsettings', 
     {id, x, y})
-    .then(console.log("Success!"))
+    .then(console.log(x, "posted new pixel settings!"))
     .catch(error => "Authorization failed: " + error.message)
     this.setState({ settings: this.state.settings.map((setting) => {
     if(setting.id === id) {
@@ -76,11 +77,6 @@ class App extends Component {
     {name})
     .then(console.log("Success!"))
     .catch(error => "Authorization failed: " + error.message)
-  }
-  componentDidUpdate(prevState) {
-    if (prevState !== this.state) {
-      console.log('pokemons state has changed.')
-    }
   }
   postButton = (position, mode, vid_length) => {
     console.log({position, mode, vid_length})
@@ -145,13 +141,11 @@ class App extends Component {
                     postButton={this.postButton}
                     delTodo={this.delTodo}
                     />
-                    <AddTodo 
-                      addTodo={this.addTodo}
-                    />
                     {this.state.connected ? <Redirect to="/home" /> : <Redirect to="/connect" />}
                   </React.Fragment>
                   )} />
                 <Route path="/About" component={About}/>
+                <Route path="/Info" component={Info}/>
                 <Route path="/Settings" render={props => (
                   <React.Fragment>
                     <SettingsHeader />
@@ -161,10 +155,13 @@ class App extends Component {
                     postButton={this.postButton}
                     setPixels={this.setPixels}
                     />
+                    <ShareSettings />
                   </React.Fragment>
                 )} />
             </div>
-            <Footer />
+            <AddTodo 
+              addTodo={this.addTodo}
+            />
         </div>
       </Router>
     );

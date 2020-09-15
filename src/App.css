@@ -21,5 +21,5 @@ h1 {
  .container  {
    padding: 0 1rem; /*Relative to the font-size of the element 
    (2em means 2 times the size of the current font)*/
-   padding-bottom: 50px;
+   padding-bottom: 75px;
  }

@@ -15,5 +15,6 @@ const headerstyle = {
     background: 'rgb(30, 200, 101)',
     color: 'black', // color of text
     textAlign: 'center',
-    padding: '10px'
+    padding: '10px',
+    marginBottom: '20px',
 }

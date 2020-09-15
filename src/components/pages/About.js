@@ -3,11 +3,6 @@ import React from 'react'
 export default function About() {
     return (
         <div>
-            <h1>FAQ</h1>
-            <p>
-                Q: Why isn't my computer clicking anything when I test a pixel position? <br></br>
-                A: Make sure you are reading the pixels correctly.
-            </p>
             <h1>About</h1>
             <p>Eloise Zeng created Eye Saver using Python, HTML, CSS, and React JS.</p>
             <h1>Contact</h1>
