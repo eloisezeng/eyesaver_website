@@ -4,7 +4,9 @@ import PropTypes from 'prop-types'
 
 class Settings extends Component {
     render() {
-        return this.props.settings.map((setting) =>
+        return (
+            <div style={{marginBottom: "60px"}}>
+        {this.props.settings.map((setting) =>
         (<SettingItem 
             key={setting.id} 
             setting={setting} 
@@ -13,6 +15,8 @@ class Settings extends Component {
             setPixels={this.props.setPixels}
             />
             )
+        )}
+        </div>
         )
     }
 }

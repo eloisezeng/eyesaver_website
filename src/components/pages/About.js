@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function About() {
     return (
-        <div>
+        <div style={{marginBottom: "60px"}}>
             <h1>About</h1>
             <p>Eloise Zeng created Eye Saver using Python, HTML, CSS, and React JS.</p>
             <h1>Contact</h1>

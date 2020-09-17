@@ -11,20 +11,20 @@ export default class Connected extends Component {
       };
       this.handleScan = this.handleScan.bind(this);
     } // FIX THIS: QR code reader
-    // handleScan(data) {
-    //   if (data) {
-    //     this.setState({
-    //       ip: data.split('|')[0],
-    //       computer: data.split('|')[1],
-    //     }, () => {
-    //         this.props.saveConfigSetting(this.state.ip, this.state.computer)
-    //     })
-    //     console.log(this.state)
-    //   }
-    // }
-    // handleError(err) {
-    //   console.error(err);
-    // }
+    handleScan(data) {
+      if (data) {
+        this.setState({
+          ip: data.split('|')[0],
+          computer: data.split('|')[1],
+        }, () => {
+            this.props.saveConfigSetting(this.state.ip, this.state.computer)
+        })
+        console.log(this.state)
+      }
+    }
+    handleError(err) {
+      console.error(err);
+    }
 
     onChange = (e) => {
         e.preventDefault() 
@@ -36,10 +36,12 @@ export default class Connected extends Component {
     render() {
         const {ip, computer} = this.props.config_settings
         return (
-            <div style={{margin: "5px"}}>
-                <p>
-                    Can't connect to your computer. Open your desktop app to load your buttons! 
-                    Scan the qr code if the ip address or the computer model isn't updated.
+            <div style={{marginBottom: "20%"}}>
+                <p style={{fontSize: "30px"}}>
+                    Can't connect to your computer. Open your desktop app to load your buttons. 
+                    Or if necessary, update the ip address or your computer's model identifier. 
+                    See the Info page for detailed instructions
+                    {/* Scan the qr code if the ip address or the computer model isn't updated. */}
                 </p>
                 {/* // FIX THIS
                 <QrReader
@@ -48,7 +50,7 @@ export default class Connected extends Component {
                     onScan={this.handleScan}
                     style={{ width: "50%", margin: "5px"}}
                 /> */}
-                <p style={{display: 'visible'}}>IP Address: </p> 
+                <p style={{display: 'visible', fontSize: "30px"}}>IP Address: </p> 
                 <input 
                 type='text'
                 name="ip"
@@ -57,7 +59,7 @@ export default class Connected extends Component {
                 value={ip}
                 onChange={this.onChange} 
                 /> 
-                <p style={{display: 'visible'}}>Computer Name</p>     
+                <p style={{display: 'visible', fontSize: "30px"}}>Model Identifier of Computer</p>     
                 <input 
                 type='text'
                 name="computer" 
@@ -75,9 +77,10 @@ const styles = {
     flex: '10', 
     padding: '5px',
     margin: '5px',
-    width: '150px',
-    height: '30px',
+    width: '100%',
+    height: '50px',
     display:'visible',
+    fontSize: '20px',
 }
 
 Connected.propTypes = {

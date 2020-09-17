@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function Info() {
     return (
-        <div>
+        <div style={{marginBottom: "60px"}}>
             <h1>Info</h1>
             <h3>Virtual Background Positions</h3>
             <img src="images/vb_positions.png" alt="Virtual Background Positions" style={{width: "100%"}}></img>

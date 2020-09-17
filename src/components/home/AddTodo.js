@@ -23,12 +23,12 @@ export class AddTodo extends Component {
     render() {
         return (
             <div style={{position: "relative"}}>
-                <form onSubmit={this.onSubmit} style={{display: 'flex', position: "fixed", bottom: '0', marginBottom: '40px'}}>
+                <form onSubmit={this.onSubmit} style={{display: 'flex', position: "fixed", bottom: '0', marginBottom: '20%'}}>
                     <input 
                     type='text'
                     name='title' 
                     placeholder='Title: '
-                    style={{flex: '1', padding: '5px'}}
+                    style={inputStyle}
                     value={this.state.title} // value of text in input is the state's title
                     onChange={this.onChange} //  this.onChange is the name of the method/function in the class
                     />
@@ -36,7 +36,7 @@ export class AddTodo extends Component {
                     name="position" 
                     value={this.state.position}
                     onChange={this.onChange}
-                    style={{flex: '1', padding: '5px'}}>
+                    style={inputStyle}>
                     <option>Position</option>
                     <option value="0">0</option>
                     <option value="1">1</option>
@@ -57,10 +57,12 @@ export class AddTodo extends Component {
                     id="mode"
                     value={this.state.mode}
                     onChange={this.onChange}
-                    style={{flex: '1', padding: '5px'}}>
+                    style={inputStyle}>
                     <option>Mode</option>
                     <option value="default">default</option>
+                    <option value="action">action</option>
                     <option value="distracted">distracted</option>
+                    <option value="none">none</option>
                     </select> 
 
                     <input 
@@ -71,7 +73,7 @@ export class AddTodo extends Component {
                     value={this.state.vid_length}
                     onChange={this.onChange}
                     placeholder="Video Length"
-                    style={{flex: '1', padding: '5px'}}>
+                    style={inputStyle}>
                     </input>
                     <input
                     type='submit'
@@ -84,30 +86,28 @@ export class AddTodo extends Component {
                     <link rel="stylesheet" 
                     href="https://fonts.googleapis.com/icon?family=Material+Icons"></link>
                     <Link style={linkStyle} to="/home">
-                        <i style={iconStyle} className="material-icons">home</i>
+                        <i style={{fontSize:"50px"}} className="material-icons">home</i>
                     </Link>
                     <Link style={linkStyle} to="/settings">
-                        <i style={iconStyle} className="material-icons">settings</i>
+                        <i style={{fontSize:"50px"}} className="material-icons">settings</i>
                     </Link>
                     <Link style={linkStyle} to="/info">
-                        <i style={iconStyle} className="material-icons">info</i>
+                        <i style={{fontSize:"50px"}} className="material-icons">info</i>
                     </Link>
                     <Link style={linkStyle} to="/about">
-                        <i style={iconStyle} className="material-icons">help</i>
+                        <i style={{fontSize:"50px"}} className="material-icons">help</i>
                     </Link>
                 </footer> 
             </div>
             )
         }
     }
-
-const iconStyle = {
-    height: "5%",
-}
+    
 const linkStyle = {
     color: "black",
     paddingLeft: "10px",
     paddingRight: "10px",
+    margin: "15px",
 }
 
 const footerStyle = {
@@ -118,6 +118,12 @@ const footerStyle = {
     bottom: "0",
     position: "fixed", /* might not work on mobile */
     width: "100%",
+    height: "10%",
+}
+
+const inputStyle = {
+    flex: '1', 
+    padding: '5px', 
 }
 
 AddTodo.propTypes = {

@@ -22,7 +22,7 @@ export class TodoItem extends Component {
             <div style={this.getStyle()}>
                 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"></link>
                 <button onClick={this.props.delTodo.bind(this, id)} style={delbtnstyle}>
-                <i className="material-icons">delete</i>
+                <i style={{fontSize: "35px"}} className="material-icons">delete</i>
                 </button> 
                 <button onClick={this.props.postButton.bind(this, position, mode, vid_length)} style={btnstyle}>
                     <h1>{ title }</h1> 
@@ -48,7 +48,6 @@ const btnstyle = {
     padding: "15px 32px",
     textAlign: "center",
     textDecoration: "none",
-    fontSize: "18px",
     width: "90%",
     borderRadius: "14px",
     border: "2px solid #fcc544",
@@ -56,7 +55,6 @@ const btnstyle = {
 const delbtnstyle =  {
     backgroundColor: "rgb(0, 0, 0, 0)",
     color: "rgb(58, 55, 55)",
-    fontSize: '30px',
     border: 'none',
     padding: '5px 9px',
     borderRadius: '50%',
@@ -64,7 +62,7 @@ const delbtnstyle =  {
     float: 'right',
     position: "absolute",
     top: "50%",
-    right: "-3%",
+    right: "-7%",
     msTransform: "translate(-50%, -50%)",
     transform: "translate(-50%, -50%)",
 }

@@ -26,7 +26,7 @@ export default class SettingItem extends Component {
     // show label instead of dropdown of img if there is no image source
     showCaption = () => {
         return {display: this.props.setting.img === "" ? "visible" : "none",
-                width: '50%',
+                fontSize: '20px',
             }
         }
     
@@ -83,11 +83,14 @@ export default class SettingItem extends Component {
 
 const formStyle = {
     margin: '5px', 
+    fontSize: '20px',
 }
 const btnStyle = {
-    padding: '2px', 
+    padding: '10px', 
     width: "65px",
-    margin: "2px",
+    margin: "5px",
+    height: "35px",
+    fontSize: '18px',
 }
 
 SettingItem.propTypes = {
