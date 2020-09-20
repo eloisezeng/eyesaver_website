@@ -50,7 +50,8 @@ const btnstyle = {
     textDecoration: "none",
     width: "90%",
     borderRadius: "14px",
-    border: "2px solid #fcc544",
+    border: "2px outset #fcc544",
+    boxShadow: "1px 1px 2px #bbbbbb",
 }
 const delbtnstyle =  {
     backgroundColor: "rgb(0, 0, 0, 0)",

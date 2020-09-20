@@ -123,7 +123,7 @@ const footerStyle = {
 
 const inputStyle = {
     height: '40px', 
-    // width: '70px',
+    width: '80px',
     padding: '5px', 
 }
 
