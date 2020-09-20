@@ -59,11 +59,11 @@ export default class Connected extends Component {
                 value={ip}
                 onChange={this.onChange} 
                 /> 
-                <p style={{display: 'visible', fontSize: "30px"}}>Model Identifier of Computer</p>     
+                <p style={{display: 'visible', fontSize: "30px"}}>Model of Computer</p>     
                 <input 
                 type='text'
                 name="computer" 
-                placeholder="Model Identifier:"
+                placeholder="Model:"
                 style={styles}
                 value={computer} // value of text in input is the state's title
                 onChange={this.onChange} 

@@ -79,7 +79,7 @@ export class AddTodo extends Component {
                     type='submit'
                     value='Add'
                     className='btn'
-                    style={{flex: '1', padding: '5px'}}
+                    style={inputStyle}
                     />
                 </form>
                 <footer style={footerStyle}>
@@ -122,7 +122,8 @@ const footerStyle = {
 }
 
 const inputStyle = {
-    flex: '1', 
+    height: '40px', 
+    // width: '70px',
     padding: '5px', 
 }
 
