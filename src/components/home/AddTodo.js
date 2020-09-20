@@ -125,6 +125,7 @@ const inputStyle = {
     height: '40px', 
     width: '80px',
     padding: '5px', 
+    fontSize: '16px',
 }
 
 AddTodo.propTypes = {
