@@ -6,7 +6,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Prerequisites
 
-Install Node.js
+Install Node.js <br>
 Run npm install in the project directory.
 
 ## Available Scripts
