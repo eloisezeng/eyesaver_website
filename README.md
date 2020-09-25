@@ -7,7 +7,20 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Prerequisites
 
 Install Node.js <br>
-Run npm install in the project directory.
+Run npm install in the project directory. 
+
+## For Non-technical People
+Install Node.js <br> Install Git.
+Copy this into your terminal (MacOS) or Powershell (WindowsOS) to install everything you need to run EyeSaver. 
+
+git clone https://github.com/eloisezeng/eyesaver_mac
+cd eyesaver_mac
+pip3 install -r requirements.txt
+cd ..
+git clone https://github.com/eloisezeng/eyesaver_website
+cd eyesaver_website
+npm install
+cd ..
 
 ## Available Scripts
 
