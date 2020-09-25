@@ -6,32 +6,34 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 How to install EyeSaver: For Non-technical People
 ---------------
+### Prerequisites
 Install Node.js <br> Install Git <br> Install Python <br>
 ### Mac OS
 Copy this into your terminal to install everything you need to run EyeSaver. 
 
-git clone https://github.com/eloisezeng/eyesaver_mac
-cd eyesaver_mac
-pip3 install -r requirements.txt
-cd ..
-git clone https://github.com/eloisezeng/eyesaver_website
-cd eyesaver_website
-npm install
-cd ..
+git clone https://github.com/eloisezeng/eyesaver_mac <br>
+cd eyesaver_mac <br>
+pip3 install -r requirements.txt <br>
+cd .. <br>
+git clone https://github.com/eloisezeng/eyesaver_website <br>
+cd eyesaver_website <br>
+npm install <br>
+cd .. <br>
 
 ### Windows OS
 Copy this into your Powershell to install everything you need to run EyeSaver. 
 
-git clone https://github.com/eloisezeng/eyesaver_windows
-cd eyesaver_windows
-pip3 install -r requirements.txt
-cd ..
-git clone https://github.com/eloisezeng/eyesaver_website
-cd eyesaver_website
-npm install
-cd ..
+git clone https://github.com/eloisezeng/eyesaver_windows <br>
+cd eyesaver_windows <br>
+pip3 install -r requirements.txt <br>
+cd .. <br>
+git clone https://github.com/eloisezeng/eyesaver_website <br>
+cd eyesaver_website <br>
+npm install <br>
+cd .. <br>
 
 ### Run this command and search for 192.168.X.X:3000 (ip address) on your phone
+
 ## Prerequisites for coders interested in forking
 
 Install Node.js <br>
