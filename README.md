@@ -4,9 +4,11 @@ Coded by Eloise Zeng
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Instructions on how to install EyeSaver: For Non-technical People
-Install Node.js <br> Install Git. <br> Install Python
-Copy this into your terminal (MacOS) or Powershell (WindowsOS) to install everything you need to run EyeSaver. 
+How to install EyeSaver: For Non-technical People
+---------------
+Install Node.js <br> Install Git <br> Install Python <br>
+### Mac OS
+Copy this into your terminal to install everything you need to run EyeSaver. 
 
 git clone https://github.com/eloisezeng/eyesaver_mac
 cd eyesaver_mac
@@ -17,6 +19,19 @@ cd eyesaver_website
 npm install
 cd ..
 
+### Windows OS
+Copy this into your Powershell to install everything you need to run EyeSaver. 
+
+git clone https://github.com/eloisezeng/eyesaver_windows
+cd eyesaver_windows
+pip3 install -r requirements.txt
+cd ..
+git clone https://github.com/eloisezeng/eyesaver_website
+cd eyesaver_website
+npm install
+cd ..
+
+### Run this command and search for 192.168.X.X:3000 (ip address) on your phone
 ## Prerequisites for coders interested in forking
 
 Install Node.js <br>
