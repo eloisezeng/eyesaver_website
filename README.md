@@ -4,8 +4,9 @@ Coded by Eloise Zeng
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-How to install EyeSaver: For Non-technical People
+How to use EyeSaver: For Non-technical People
 ---------------
+## Installation
 ### Prerequisites
 Install Node.js <br> Install Git <br> Install Python <br>
 ### Mac OS
@@ -32,7 +33,10 @@ cd eyesaver_website <br>
 npm install <br>
 cd .. <br>
 
-### Run this command and search for 192.168.X.X:3000 (ip address) on your phone
+### How to launch the desktop app
+Run this command in the Terminal for MacOS or the Powershell for WindowsOS: cd eyesaver_mac; python3 local_server.py & cd .. && cd eyesaver_website ; npm start <br>
+Search the website, 192.168.X.X:3000 (ip address of your computer), on your mobile device
+Close the Terminal/Powershell when you want to shut down the webapp (no longer be able to access 192.168.X.X:3000)
 
 ## Prerequisites for coders interested in forking
 
