@@ -35,11 +35,11 @@ cd .. <br>
 
 ## How to launch the desktop app
 Run this command in the Terminal for MacOS or the Powershell for WindowsOS: <br>
-cd eyesaver_mac; python3 local_server.py & cd .. && cd eyesaver_website ; npm start <br>
+cd eyesaver_mac; python3 local_server.py & cd .. && cd eyesaver_website ; npm start <br><br>
 Search the website, 192.168.X.X:3000 (ip address of your computer), on your mobile device
-#### Find ip address on MacOS
+### Find ip address on MacOS
 Go to System Preferences. Open Network. You should see your IP address (192.168.X.X) under "Turn Wi-Fi Off"
-#### Find ip address on WindowsOS 
+### Find ip address on WindowsOS 
 Search for Wifi-Settings. Click Hardware properties. You should see your IP address (192.168.X.X) next to IPv4 address.
 
 #### Close the Terminal/Powershell when you want to shut down the webapp (no longer be able to access 192.168.X.X:3000)
